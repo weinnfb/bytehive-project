@@ -16,6 +16,11 @@ const PrimaryButton = styled(Button)(({ theme }) => ({
         backgroundColor: "#1a212c", 
         boxShadow: "none",
     },
+
+    "&.Mui-disabled": {
+        color: theme.palette.common.white,
+        opacity: 0.8,
+    }
 }));
 
 export default PrimaryButton;

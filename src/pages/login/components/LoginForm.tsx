@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { styled, Typography, TextField, InputAdornment, IconButton, Button } from "@mui/material";
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Visibility } from "@mui/icons-material";
 import PrimaryButton from "../../../componets/button/PrimaryButton";
+import { initialValuesLogin, loginFields } from "../../../forms/login/form";
+import { loginSchema } from "../../../forms/login/validation";
+import type { LoginFormValues } from "../../../forms/login/types";
 
 interface Props {
     onSwitch: () => void;
@@ -13,18 +15,16 @@ interface Props {
 const LoginForm = ({ onSwitch }: Props) => {
     const [showPassword, setShowPassword] = useState(false);
 
+    const onSubmit = (values: LoginFormValues) => {
+        console.log(values);
+    }
+
     const formik = useFormik({
-        initialValues: {
-            email: "",
-            password: "",
-        },
-        validationSchema: Yup.object({
-            email: Yup.string().email("Invalid email").required("Required"),
-            password: Yup.string().min(6, "Minimum 6 characters").required("Required"),
-        }),
-        onSubmit: (values) => {
-            console.log("Login", values);
-        },
+        initialValues: initialValuesLogin,
+        validationSchema: loginSchema,
+        validateOnChange: true,
+        enableReinitialize: true,
+        onSubmit,
     });
 
     return (
@@ -42,7 +42,31 @@ const LoginForm = ({ onSwitch }: Props) => {
                     </LinkButton>
                 </SignUpPart>
             </WelcomeText>
-            <ValidationWrapper>
+            <ValidationWrapper onSubmit={formik.handleSubmit}>
+                {/* {loginFields.map((field) => (
+                    <TextFieldEmail
+                        key={field.name}
+                        label={field.label}
+                        name={field.name}
+                        autoComplete={field.autoComplete}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        error={field.name === "email" ? formik.touched.email && !!formik.errors.email : formik.touched.password && !!formik.errors.password}
+                        helperText={field.name === "email" ? formik.touched.email && formik.errors.email : formik.touched.password && formik.errors.password}
+                        InputProps={{
+                            endAdornment: (
+                                field.name === "password" &&
+                                <InputAdornment position="end">
+                                    <IconButton onClick={() => setShowPassword((prev) => !prev)} edge="end">
+                                        {showPassword ? <VisibilityOffIcon /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
+                        {...formik}
+                    />
+                ))} */}
+
                 <TextFieldEmail
                     label="Email address"
                     name="email"
@@ -76,13 +100,13 @@ const LoginForm = ({ onSwitch }: Props) => {
                         ),
                     }}
                 />
-                <PrimaryButton type="submit">
+                <PrimaryButton type="submit" disabled={!formik.isValid}>
                     Log In
                 </PrimaryButton>
                 <TermsText>
                     By signing up, I agree to{" "}
                     <StyledLink>
-                    Terms of Use and Privacy Policy.
+                        Terms of Use and Privacy Policy.
                     </StyledLink>
                 </TermsText>
             </ValidationWrapper>
@@ -145,7 +169,7 @@ const ValidationWrapper = styled('form')({
     flexDirection: 'column',
     gap: 20,
     width: '100%',
-    alignItems: 'flex-start'  
+    alignItems: 'flex-start'
 });
 
 const TextFieldEmail = styled(TextField)(({ theme }) => ({
