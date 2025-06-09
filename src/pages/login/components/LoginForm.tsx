@@ -17,6 +17,7 @@ const LoginForm = ({ onSwitch }: Props) => {
 
     const onSubmit = (values: LoginFormValues) => {
         console.log(values);
+        alert('МОЛОДЧИНА❤️❤️❤️ !!!')
     }
 
     const formik = useFormik({
