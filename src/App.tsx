@@ -1,21 +1,25 @@
 import { styled } from '@mui/material'
 import LoginForm from './pages/login/components/LoginForm';
+import SignUpForm from './pages/login/components/SignUpForm';
+import AuthLayout from './layout/AuthLayout';
+import { useState } from 'react';
 
 function App() {
+  const [isLogin, setIsLogin] = useState(true);
   return (
     <Wrapper>
-      <LoginForm onSwitch={() => console.log("Switch to Sign Up")} />
+      <AuthLayout>
+        {isLogin ? <LoginForm onSwitch={() => setIsLogin(false)} /> : <SignUpForm onSwitch={() => setIsLogin(true)} />}
+      </AuthLayout>
     </Wrapper>
   )
 }
 
-const Wrapper = styled('div')(({theme}) => ({
+const Wrapper = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.common.white,
   display: 'flex',
   width: '100vw',
-  minHeight:'100vh',
-  alignItems: "center",
-  justifyContent: "center"
+  minHeight: '100vh',
 }))
 
 

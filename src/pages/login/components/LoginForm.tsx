@@ -4,7 +4,7 @@ import { styled, Typography, TextField, InputAdornment, IconButton, Button } fro
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Visibility } from "@mui/icons-material";
 import PrimaryButton from "../../../componets/button/PrimaryButton";
-import { initialValuesLogin, loginFields } from "../../../forms/login/form";
+import { initialValuesLogin } from "../../../forms/login/form";
 import { loginSchema } from "../../../forms/login/validation";
 import type { LoginFormValues } from "../../../forms/login/types";
 
@@ -117,7 +117,6 @@ const LoginForm = ({ onSwitch }: Props) => {
 
 const WrapeerForm = styled('div')({
     display: 'flex',
-    maxWidth: 352,
     alignItems: 'flex-start',
     width: '100%',
     gap: 40,
@@ -197,6 +196,7 @@ const TextFieldEmail = styled(TextField)(({ theme }) => ({
         fontSize: 14,
         color: theme.palette.grey[200],
         fontWieght: 400,
+        
     },
 }));
 
