@@ -94,7 +94,11 @@ const SignUpForm = ({ onSwitch }: Props) => {
                 <TermsText>
                     By signing up, I agree to{" "}
                     <StyledLink>
-                        Terms of Use and Privacy Policy.
+                        Terms of Use
+                    </StyledLink>
+                    {" "}and{" "}
+                    <StyledLink>
+                        Privacy Policy.
                     </StyledLink>
                 </TermsText>
             </Form>
@@ -191,17 +195,17 @@ const TextFieldCustom = styled(TextField)(({ theme }) => ({
     },
 }));
 
-const TermsText = styled("span")(({ theme }) => ({
-    fontSize: "14px",
+const TermsText = styled(Typography)(({ theme }) => ({
+    fontSize: "12px",
     color: theme.palette.grey[100],
     fontWeight: 400,
 }));
 
-const StyledLink = styled(Typography)(({ theme }) => ({
+const StyledLink = styled('span')(({ theme }) => ({
     fontWeight: 400,
     textDecoration: "underline",
     color: theme.palette.primary.contrastText,
-    fontSize: "14px",
+    fontSize: "12px",
 }));
 
 
