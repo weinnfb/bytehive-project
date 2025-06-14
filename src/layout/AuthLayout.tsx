@@ -31,6 +31,7 @@ const AuthLayout = ({ children }: Props) => {
 const Wrapper = styled('div')({
     display: 'flex',
     width: '100%',
+    height: '100%'
 });
 
 const Left = styled('div')({
@@ -38,7 +39,6 @@ const Left = styled('div')({
     position: 'relative',
     width: '100%',
     alignItems: 'center',
-    background: 'url("/bg.png")'
 });
 
 const LeftContent = styled('div')({
@@ -78,7 +78,6 @@ const LogoWrapper = styled('div')({
     top: 0,
     left: 0,
     padding: '40px',
-    // zIndex: 1, // если нужно поверх чего-то
     display: 'flex',
     alignItems: 'center',
 });

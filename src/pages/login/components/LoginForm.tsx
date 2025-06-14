@@ -7,6 +7,7 @@ import PrimaryButton from "../../../componets/button/PrimaryButton";
 import { initialValuesLogin } from "../../../forms/login/form";
 import { loginSchema } from "../../../forms/login/validation";
 import type { LoginFormValues } from "../../../forms/login/types";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     onSwitch: () => void;
@@ -14,10 +15,12 @@ interface Props {
 
 const LoginForm = ({ onSwitch }: Props) => {
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const onSubmit = (values: LoginFormValues) => {
         console.log(values);
         alert('МОЛОДЧИНА❤️❤️❤️ !!!')
+        navigate('/dashboard');
     }
 
     const formik = useFormik({
