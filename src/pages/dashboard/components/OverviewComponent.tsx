@@ -1,33 +1,57 @@
 import { styled, Typography } from '@mui/material';
+import { overviewStats } from '../../../mocks/overviewMocks';
+import StatCard from '../../../componets/StatCard';
+import IncomeChart from './IncomeChart';
+import BookingStatsCard from './BookedChart';
+import DonutCards from './DoublePieChart';
 
 const OverviewComponent = () => {
     return (
-        <Wrapper>
-            <Title>Overview</Title>
-            <SubTitle>This is the overview tab content.</SubTitle>
-        </Wrapper>
+        <PageWrapper>
+            <CardsSection>
+                {overviewStats.map((item) => (
+                    <StatCard
+                        key={item.label}
+                        value={item.value}
+                        label={item.label}
+                        img={item.img}
+                    />
+                ))}
+            </CardsSection>
+            <ChartsWrapper>
+            <CardHolder>
+                <IncomeChart />
+                <BookingStatsCard />
+            </CardHolder>
+            <DonutCards />
+            </ChartsWrapper>
+        </PageWrapper>
     );
 };
 
-const Wrapper = styled('div')({
+const PageWrapper = styled('div')({
     display: 'flex',
     flexDirection: 'column',
-    gap: 8,
-    textAlign:'center'
+    padding: '88px 40px 0px 40px',
+    gap: 24,
+    justifyContent: 'center'
 });
 
-const Title = styled(Typography)(({ theme }) => ({
-    color: theme.palette.primary.main,
-    fontSize: 32,
-    fontWeight: 700,
-    lineHeight: 1.5,
-}));
+const CardsSection = styled('div')({
+    display: 'flex',
+    gap: 24,
+})
 
-const SubTitle = styled(Typography)(({ theme }) => ({
-    color: theme.palette.primary.contrastText,
-    fontSize: 18,
-    fontWeight: 500,
-    lineHeight: 1.5,
-}));
+const CardHolder = styled('div')({
+    display: 'flex',
+    gap: 24
+});
 
+const ChartsWrapper = styled('div')({
+    display:'flex',
+    flexDirection:'column',
+    gap: 24,
+    maxWidth: 712
+
+})
 export default OverviewComponent;

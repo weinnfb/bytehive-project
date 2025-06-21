@@ -1,29 +1,43 @@
 import { styled, Typography } from '@mui/material';
+import { analyticStats } from '../../../mocks/analyticsMocks';
+import StatCard from '../../../componets/StatCard';
 
 const AnalyticsComponent = () => {
     return (
-        <Wrapper>
-            <Title>Analytics</Title>
-            <SubTitle>This is the analytics tab content.</SubTitle>
-        </Wrapper>
+        <PageWrapper>
+            <CardsSection>
+                {analyticStats.map((item) => (
+                    <StatCard
+                        key={item.label}
+                        value={item.value}
+                        label={item.label}
+                        img={item.img}
+                    />
+                ))}
+            </CardsSection>
+            <SubTitle>
+                To be continued...
+            </SubTitle>
+        </PageWrapper>
     );
 };
 
-const Wrapper = styled('div')({
+const PageWrapper = styled('div')({
     display: 'flex',
     flexDirection: 'column',
-    gap: 8,
+    padding: '88px 40px 0px 40px',
+    gap: 24,
+    alignItems:'center',
+    justifyContent:'center'
 });
 
-const Title = styled(Typography)(({ theme }) => ({
-    color: theme.palette.primary.contrastText,
-    fontSize: 32,
-    fontWeight: 700,
-    lineHeight: 1.5,
-}));
+const CardsSection = styled('div')({
+    display:'flex',
+    gap: 24,
+})
 
 const SubTitle = styled(Typography)(({ theme }) => ({
-    color: theme.palette.error.main,
+    color: theme.palette.primary.contrastText,
     fontSize: 18,
     fontWeight: 500,
     lineHeight: 1.5,

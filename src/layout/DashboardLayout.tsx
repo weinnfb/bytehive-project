@@ -27,7 +27,6 @@ const Wrapper = styled('div')({
 
 const Content = styled('div')({
     display: 'flex',
-    padding: '88px 40px 0px 40px',
     width: 1160,
     flexDirection: 'column',
     alignItems: 'center',
